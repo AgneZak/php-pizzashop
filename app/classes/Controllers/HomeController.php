@@ -6,6 +6,7 @@ use App\Abstracts\Controller;
 use App\App;
 use App\Views\BasePage;
 use App\Views\Content\HomeContent;
+use App\Views\Forms\Admin\DeleteForm;
 use Core\View;
 
 class HomeController extends Controller
@@ -67,13 +68,24 @@ class HomeController extends Controller
         }
         $home_content = new HomeContent();
 
+        $home_content->content();
+
+        $rows = App::$db->getRowsWhere('pizzas');
+
+        $url = App::$router::getUrl('edit');
+
+        foreach ($rows as $id => &$row) {
+            $row['link'] = "{$url}?id={$id}";
+
+            $deleteForm = new DeleteForm($id);
+            $row['delete'] = $deleteForm->render();
+        }
+
         $content = new View([
             'title' => 'Welcome to Pz-DERIA',
             'heading' => $h3,
-            'products' => App::$db->getRowsWhere('pizzas')
+            'products' => $rows
         ]);
-
-        $home_content->content();
 
         $this->page->setContent($content->render(ROOT . '/app/templates/content/index.tpl.php'));
 

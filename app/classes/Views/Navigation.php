@@ -18,8 +18,6 @@ class Navigation extends \Core\View
         if (App::$session->getUser()) {
             if (App::$session->getUser()['role'] === 'admin') {
                 return $nav + [
-                        App::$router::getUrl('add') => 'Add',
-                        App::$router::getUrl('list') => 'Edit',
                         App::$router::getUrl('admin_orders') => 'Orders',
                         App::$router::getUrl('admin_users') => 'Users',
                         App::$router::getUrl('logout') => 'Logout',
