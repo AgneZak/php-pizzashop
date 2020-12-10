@@ -15,6 +15,7 @@ class HomeController extends Controller
 {
     protected BasePage $page;
     protected $link;
+
     /**
      * Controller constructor.
      *
@@ -75,20 +76,24 @@ class HomeController extends Controller
         $rows = App::$db->getRowsWhere('pizzas');
 
         $url = App::$router::getUrl('edit');
+        if (App::$session->getUser()) {
+            foreach ($rows as $id => &$row) {
+                if (App::$session->getUser()['role'] === 'admin') {
+                    $this->link = new Link([
+                        'link' => "{$url}?id={$id}",
+                        'text' => 'Edit'
+                    ]);
 
-        foreach ($rows as $id => &$row) {
-            $this->link = new Link([
-                'link' => "{$url}?id={$id}",
-                'text' => 'Edit'
-            ]);
+                    $row['link'] = $this->link->render();
 
-            $row['link'] = $this->link->render();
+                    $deleteForm = new DeleteForm($id);
+                    $row['delete'] = $deleteForm->render();
+                } elseif (App::$session->getUser()['role'] === 'user') {
 
-            $deleteForm = new DeleteForm($id);
-            $row['delete'] = $deleteForm->render();
-
-            $orderForm = new OrderForm($row['name']);
-            $row['order'] = $orderForm->render();
+                    $orderForm = new OrderForm($row['name']);
+                    $row['order'] = $orderForm->render();
+                }
+            }
         }
 
         $content = new View([
