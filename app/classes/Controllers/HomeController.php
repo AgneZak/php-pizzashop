@@ -59,7 +59,6 @@ class HomeController extends Controller
      */
     function index(): ?string
     {
-        // TODO: Implement index() method.
 
         if (App::$session->getUser()) {
             $h3 = "Sveiki sugrize {$_SESSION['email']}";

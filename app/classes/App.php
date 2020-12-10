@@ -30,7 +30,6 @@ class App
 
     public function __destruct()
     {
-        // TODO: Implement __destruct() method.
         self::$db->save();
     }
 

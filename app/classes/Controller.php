@@ -50,6 +50,5 @@ class Controller extends \App\Abstracts\Controller
      */
     function index(): ?string
     {
-        // TODO: Implement index() method.
     }
 }

@@ -46,8 +46,6 @@ class Router extends \Core\Abstracts\Router
      */
     public static function add(string $name, string $url, string $controller_name, string $controller_method = 'index'): void
     {
-        // TODO: Implement add() method.
-
         self::$routes[$name] = [
             'url' => $url,
             'controller_name' => $controller_name,
@@ -63,7 +61,6 @@ class Router extends \Core\Abstracts\Router
      */
     protected static function getControllerInstance(string $controller_name)
     {
-        // TODO: Implement getControllerInstance() method.
         return new $controller_name;
     }
 
@@ -76,7 +73,6 @@ class Router extends \Core\Abstracts\Router
      */
     protected static function getRouteByUrl($url): ?array
     {
-        // TODO: Implement getRouteByUrl() method.
         $url_path = parse_url($url, PHP_URL_PATH);
         foreach (self::$routes as $route) {
             if ($route['url'] == $url_path) {

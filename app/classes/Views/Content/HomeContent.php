@@ -8,6 +8,8 @@ class HomeContent
 {
     public function content()
     {
+        // TODO: Implement content() method.
+
         if (isset($_POST['id'])) {
             $rows = App::$db->getRowsWhere('orders');
             $pizza_id = 1;
