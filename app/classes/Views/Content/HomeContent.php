@@ -33,11 +33,7 @@ class HomeContent
                 $clean_inputs = $this->order->values();
                 //TODO: Post a message, when order is made
             }
-            if ($this->redirectForm->validate()) {
-
-            }
         }
-
 
         if (isset($_POST['id'])) {
 
