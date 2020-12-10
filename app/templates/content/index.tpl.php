@@ -1,20 +1,6 @@
 <h1 class="header header--main"><?php print $data['title']; ?></h1>
 <h3 class="header"><?php print $data['heading']; ?></h3>
-
-<?php if (!App\App::$session->getUser()): ?>
-    <form method="POST" action="/login">
-        <button>Login</button>
-    </form>
-
-<?php elseif (App\App::$session->getUser()): ?>
-
-    <?php if (App\App::$session->getUser()['role'] === 'admin') : ?>
-        <form method="POST" action="/add">
-            <button>Create</button>
-        </form>
-    <?php endif; ?>
-
-<?php endif; ?>
+<?php print $data['redirect']; ?>
 
 <section class="grid-container">
 
