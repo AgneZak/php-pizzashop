@@ -22,12 +22,20 @@ class AdminOrderTable extends Table
             $user = App::$db->getRowWhere('users', ['email' => $row['email']]);
             $row['full_name'] = $user['name'];
 
-            $timeago = date('h:i', (time() - $row['timestamp']));
-            $row['timestamp'] = $timeago;
+            $timeStamp = date('Y-m-d H:i:s', $row['timestamp']);
+
+            $timeAgo = strtotime($timeStamp);
+            $timeNow =  strtotime("now");
+
+            $diff = $timeNow - $timeAgo;
+            $result = abs($timeNow - $timeAgo)/(60*60) . " h";
+
+
+            $row['timestamp'] = $result;
 
             $statusForm = new StatusForm($row['status'], $id);
             $rows[$id]['role_form'] = $statusForm->render();
-            unset($row['email'],$row['status']);
+            unset($row['email'], $row['status']);
         }
 
         parent::__construct([
