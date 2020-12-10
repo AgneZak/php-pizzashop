@@ -77,8 +77,9 @@ class HomeController extends Controller
 
         $url = App::$router::getUrl('edit');
 
-        if (App::$session->getUser()) {
-            foreach ($rows as $id => &$row) {
+
+        foreach ($rows as $id => &$row) {
+            if (App::$session->getUser()) {
                 if (App::$session->getUser()['role'] === 'admin') {
                     $this->link = new Link([
                         'link' => "{$url}?id={$id}",
@@ -98,8 +99,13 @@ class HomeController extends Controller
                     $row['link'] = '';
                     $row['delete'] = '';
                 }
+            } else {
+                $row['order'] = '';
+                $row['link'] = '';
+                $row['delete'] = '';
             }
         }
+
 
         $content = new View([
             'title' => 'Welcome to Pz-DERIA',
