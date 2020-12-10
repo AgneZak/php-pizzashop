@@ -83,6 +83,7 @@ class HomeController extends Controller
                 if (App::$session->getUser()['role'] === 'admin') {
                     $this->link = new Link([
                         'link' => "{$url}?id={$id}",
+                        'class' => 'link',
                         'text' => 'Edit'
                     ]);
 
@@ -110,7 +111,7 @@ class HomeController extends Controller
         $content = new View([
             'title' => 'Welcome to Pz-DERIA',
             'heading' => $h3,
-            'redirect' => $home_content->redirect(),
+            'redirect' => $home_content->redirectLink(),
             'products' => $rows
         ]);
 

@@ -132,3 +132,19 @@ li a:hover:not(.active) {
     object-position: center;
     object-fit: contain;
 }
+
+/* ----------------------
+             Links
+-------------------------*/
+.link{
+    display: inline-block;
+    margin: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid #BA68C8;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    min-width: 100px;
+}

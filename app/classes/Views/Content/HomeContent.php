@@ -58,11 +58,12 @@ class HomeContent
 
     }
 
-    public function redirect()
+    public function redirectLink()
     {
         if (!App::$session->getUser()) {
             $this->link = new Link([
                 'link' => "/login",
+                'class' => 'link',
                 'text' => 'Login'
             ]);
 
@@ -71,6 +72,7 @@ class HomeContent
             if (App::$session->getUser()['role'] === 'admin') {
                 $this->link = new Link([
                     'link' => "/add",
+                    'class' => 'link',
                     'text' => 'Create'
                 ]);
 
