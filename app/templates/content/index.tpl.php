@@ -27,13 +27,7 @@
                     <h4><?php print $product['name']; ?></h4>
                     <img class="product-img" src="<?php print $product['img']; ?>" alt="">
                     <p><?php print $product['price']; ?> $</p>
-
-                    <form method="POST">
-                        <input type="hidden" name="id" value="ORDER">
-                        <input type="hidden" name="name" value="<?php print $product['name']; ?>">
-                        <button type="submit">Order</button>
-                    </form>
-
+                    <?php print $product['order']; ?>
                 </div>
             <?php elseif (App\App::$session->getUser()['role'] === 'admin') : ?>
 

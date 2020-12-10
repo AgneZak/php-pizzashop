@@ -7,6 +7,7 @@ use App\App;
 use App\Views\BasePage;
 use App\Views\Content\HomeContent;
 use App\Views\Forms\Admin\DeleteForm;
+use App\Views\Forms\Admin\OrderForm;
 use Core\View;
 
 class HomeController extends Controller
@@ -79,6 +80,9 @@ class HomeController extends Controller
 
             $deleteForm = new DeleteForm($id);
             $row['delete'] = $deleteForm->render();
+
+            $orderForm = new OrderForm($row['name']);
+            $row['order'] = $orderForm->render();
         }
 
         $content = new View([

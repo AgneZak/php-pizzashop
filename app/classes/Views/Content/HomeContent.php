@@ -4,15 +4,19 @@ namespace App\Views\Content;
 
 use App\App;
 use App\Views\Forms\Admin\DeleteForm;
+use App\Views\Forms\Admin\OrderForm;
 use Core\Views\Form;
 
 class HomeContent
 {
     protected DeleteForm $form;
+    protected $order;
 
     public function __construct()
     {
         $this->form = new deleteForm();
+        $this->order = new OrderForm();
+
     }
 
     public function content()
@@ -25,7 +29,12 @@ class HomeContent
 
                 App::$db->deleteRow('pizzas', $clean_inputs['id']);
             }
+
+//            if ($this->order->validate()) {
+//                $clean_inputs = $this->order->values();
+//            }
         }
+
 
         if (isset($_POST['id'])) {
 
