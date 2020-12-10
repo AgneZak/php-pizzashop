@@ -23,13 +23,12 @@ class AdminOrderTable extends Table
             $row['full_name'] = $user['name'];
 
             $timeStamp = date('Y-m-d H:i:s', $row['timestamp']);
+            $difference = abs(strtotime("now") - strtotime($timeStamp));
 
-            $timeAgo = strtotime($timeStamp);
-            $timeNow =  strtotime("now");
-
-            $diff = $timeNow - $timeAgo;
-            $result = abs($timeNow - $timeAgo)/(60*60) . " h";
-
+            $days = floor($difference / (3600*24));
+            $hours = floor($difference / 3600);
+            $minutes = floor(($difference - ($hours*3600)) / 60);
+            $result = "{$days}d {$hours}:{$minutes} H";
 
             $row['timestamp'] = $result;
 
