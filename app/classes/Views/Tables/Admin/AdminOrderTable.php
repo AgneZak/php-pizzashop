@@ -22,6 +22,9 @@ class AdminOrderTable extends Table
             $user = App::$db->getRowWhere('users', ['email' => $row['email']]);
             $row['full_name'] = $user['name'];
 
+            $timeago = date('h:i', (time() - $row['timestamp']));
+            $row['timestamp'] = $timeago;
+
             $statusForm = new StatusForm($row['status'], $id);
             $rows[$id]['role_form'] = $statusForm->render();
             unset($row['email'],$row['status']);
