@@ -76,6 +76,7 @@ class HomeController extends Controller
         $rows = App::$db->getRowsWhere('pizzas');
 
         $url = App::$router::getUrl('edit');
+
         if (App::$session->getUser()) {
             foreach ($rows as $id => &$row) {
                 if (App::$session->getUser()['role'] === 'admin') {
@@ -88,10 +89,14 @@ class HomeController extends Controller
 
                     $deleteForm = new DeleteForm($id);
                     $row['delete'] = $deleteForm->render();
+                    $row['order'] = '';
+
                 } elseif (App::$session->getUser()['role'] === 'user') {
 
                     $orderForm = new OrderForm($row['name']);
                     $row['order'] = $orderForm->render();
+                    $row['link'] = '';
+                    $row['delete'] = '';
                 }
             }
         }
