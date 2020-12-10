@@ -9,11 +9,12 @@ use App\Views\Content\HomeContent;
 use App\Views\Forms\Admin\DeleteForm;
 use App\Views\Forms\Admin\OrderForm;
 use Core\View;
+use Core\Views\Link;
 
 class HomeController extends Controller
 {
     protected BasePage $page;
-
+    protected $link;
     /**
      * Controller constructor.
      *
@@ -76,7 +77,12 @@ class HomeController extends Controller
         $url = App::$router::getUrl('edit');
 
         foreach ($rows as $id => &$row) {
-            $row['link'] = "{$url}?id={$id}";
+            $this->link = new Link([
+                'link' => "{$url}?id={$id}",
+                'text' => 'Edit'
+            ]);
+
+            $row['link'] = $this->link->render();
 
             $deleteForm = new DeleteForm($id);
             $row['delete'] = $deleteForm->render();
