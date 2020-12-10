@@ -4,35 +4,15 @@
 <section class="grid-container">
 
     <?php foreach ($data['products'] as $product) : ?>
-        <?php if (App\App::$session->getUser()): ?>
-
-            <?php if (App\App::$session->getUser()['role'] === 'user') : ?>
-
-                <div class="grid-item">
-                    <h4><?php print $product['name']; ?></h4>
-                    <img class="product-img" src="<?php print $product['img']; ?>" alt="">
-                    <p><?php print $product['price']; ?> $</p>
-                    <?php print $product['order']; ?>
-                </div>
-            <?php elseif (App\App::$session->getUser()['role'] === 'admin') : ?>
-
-                <div class="grid-item">
-                    <h4><?php print $product['name']; ?></h4>
-                    <img class="product-img" src="<?php print $product['img']; ?>" alt="">
-                    <p><?php print $product['price']; ?> $</p>
-                    <button><?php print $product['link']; ?></button>
-                    <?php print $product['delete']; ?>
-                </div>
+        <div class="grid-item">
+            <h4><?php print $product['name']; ?></h4>
+            <img class="product-img" src="<?php print $product['img']; ?>" alt="">
+            <p><?php print $product['price']; ?> $</p>
+            <?php if (App\App::$session->getUser()): ?>
+                <?php print $product['order']; ?>
+                <?php print $product['link']; ?>
+                <?php print $product['delete']; ?>
             <?php endif; ?>
-
-        <?php else: ?>
-
-            <div class="grid-item">
-                <h4><?php print $product['name']; ?></h4>
-                <img class="product-img" src="<?php print $product['img']; ?>" alt="">
-                <p><?php print $product['price']; ?> $</p>
-            </div>
-
-        <?php endif; ?>
+        </div>
     <?php endforeach; ?>
 </section>
