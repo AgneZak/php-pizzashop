@@ -8,13 +8,11 @@ use App\Views\BasePage;
 use App\Views\Content\HomeContent;
 use App\Views\Forms\Admin\DeleteForm;
 use App\Views\Forms\Admin\OrderForm;
-use App\Views\Forms\RedirectForm;
 use Core\View;
 
 class HomeController extends Controller
 {
     protected BasePage $page;
-    protected RedirectForm $redirectForm;
 
     /**
      * Controller constructor.
@@ -33,7 +31,6 @@ class HomeController extends Controller
         $this->page = new BasePage([
             'title' => 'P-00Pica'
         ]);
-        $this->redirectForm = new RedirectForm();
     }
 
     /**

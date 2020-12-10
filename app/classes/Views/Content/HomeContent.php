@@ -5,20 +5,19 @@ namespace App\Views\Content;
 use App\App;
 use App\Views\Forms\Admin\DeleteForm;
 use App\Views\Forms\Admin\OrderForm;
-use App\Views\Forms\RedirectForm;
 use Core\Views\Form;
+use Core\Views\Link;
 
 class HomeContent
 {
     protected DeleteForm $form;
     protected OrderForm $order;
-    protected RedirectForm $redirectForm;
+    protected Link $link;
 
     public function __construct()
     {
         $this->form = new DeleteForm();
         $this->order = new OrderForm();
-        $this->redirectForm = new RedirectForm();
     }
 
     public function content()
@@ -66,36 +65,20 @@ class HomeContent
     public function redirect()
     {
         if (!App::$session->getUser()) {
-            $this->redirectForm = new RedirectForm('/login', 'Login', [
-                'email' => [
-                    'type' => 'hidden',
-                    'value' => '-'
-                ],
-                'password' => [
-                    'type' => 'hidden',
-                    'value' => '-'
-                ]
+            $this->link = new Link([
+                'link' => "/login",
+                'text' => 'Login'
             ]);
 
-            return $this->redirectForm->render();
+            return $this->link->render();
         } elseif (App::$session->getUser()) {
             if (App::$session->getUser()['role'] === 'admin') {
-                $this->redirectForm = new RedirectForm('/add', 'Create', [
-                    'name' => [
-                        'type' => 'hidden',
-                        'value' => ''
-                    ],
-                    'price' => [
-                        'type' => 'hidden',
-                        'value' => ''
-                    ],
-                    'img' => [
-                        'type' => 'hidden',
-                        'value' => ''
-                    ],
+                $this->link = new Link([
+                    'link' => "/add",
+                    'text' => 'Create'
                 ]);
 
-                return $this->redirectForm->render();
+                return $this->link->render();
             }
         }
     }
