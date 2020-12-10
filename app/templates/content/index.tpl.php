@@ -4,6 +4,7 @@
 <section class="grid-container">
 
     <?php foreach ($data['products'] as $product) : ?>
+
         <div class="grid-item">
             <h4><?php print $product['name']; ?></h4>
             <img class="product-img" src="<?php print $product['img']; ?>" alt="">
@@ -12,5 +13,7 @@
             <?php print $product['link']; ?>
             <?php print $product['delete']; ?>
         </div>
+
     <?php endforeach; ?>
+
 </section>
