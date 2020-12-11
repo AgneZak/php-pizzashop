@@ -5,8 +5,10 @@ namespace App\Controllers\Admin\Discount;
 use App\App;
 use App\Controllers\Base\AuthController;
 use App\Views\BasePage;
+use App\Views\Content\HomeContent;
 use App\Views\Forms\Admin\DeleteForm;
 use App\Views\Tables\Admin\DiscountTable;
+use Core\View;
 use Core\Views\Form;
 
 class ListController extends AuthController
@@ -34,8 +36,16 @@ class ListController extends AuthController
         }
 
         $table = new DiscountTable();
+        $home_content = new HomeContent();
 
-        $this->page->setContent($table->render());
+        $content = new View([
+            'title' => 'Edit item',
+            'table' => $table->render(),
+            'button' => $home_content->addDiscount()
+        ]);
+
+        $this->page->setContent($content->render(ROOT . '/app/templates/content/discountlist.tpl.php'));
+
 
         return $this->page->render();
     }
