@@ -17,10 +17,7 @@ class DeleteForm extends Form
             'fields' => [
                 'id' => [
                     'type' => 'hidden',
-                    'value' => $value,
-                    'validators' => [
-                        'validate_row_exists'
-                    ]
+                    'value' => $value
                 ]
             ],
             'buttons' => [

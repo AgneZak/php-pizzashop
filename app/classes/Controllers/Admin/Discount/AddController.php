@@ -20,7 +20,7 @@ class AddController extends AuthController
     {
         parent::__construct();
         $pizzas = App::$db->getRowsWhere('pizzas');
-        foreach ($pizzas as $pizza_id => $pizza){
+        foreach ($pizzas as $pizza_id => $pizza) {
             $pizza_options[$pizza_id] = $pizza['name'];
         }
         $this->form = new DiscountForm($pizza_options);
@@ -34,10 +34,15 @@ class AddController extends AuthController
     {
         if ($this->form->validate()) {
             $clean_inputs = $this->form->values();
+            $discount = App::$db->getRowWhere('discounts', ['pizza_id' => $clean_inputs['pizza_id']]);
 
-            App::$db->insertRow('discounts', $clean_inputs);
+            if (!$discount) {
+                App::$db->insertRow('discounts', $clean_inputs);
 
-            $msg = 'You added a discount';
+                $msg = 'You added a discount';
+            } else {
+                $msg = 'Discount for this selection exists';
+            }
         }
 
         $this->form_content = new FormContent([
