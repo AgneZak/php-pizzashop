@@ -40,16 +40,13 @@ class EditController extends AuthController
 
             App::$db->updateRow('pizzas', $row_id, $clean_inputs);
 
-            $p = 'You edited the item';
-
             header("Location: /index");
             exit();
         }
 
         $content = new View([
             'title' => 'Edit item',
-            'form' => $this->form->render(),
-            'message' => $p ?? null
+            'form' => $this->form->render()
         ]);
 
         $this->page->setContent($content->render(ROOT . '/app/templates/content/forms.tpl.php'));

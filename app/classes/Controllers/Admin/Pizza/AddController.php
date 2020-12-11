@@ -29,13 +29,13 @@ class AddController extends AuthController
 
             App::$db->insertRow('pizzas', $clean_inputs);
 
-            $p = 'You added an item';
+            $msg = 'You added an item';
         }
 
         $content = new View([
             'title' => 'Add',
             'form' => $this->form->render(),
-            'message' => $p ?? null
+            'message' => $msg ?? null
         ]);
 
         $this->page->setContent($content->render(ROOT . '/app/templates/content/forms.tpl.php'));

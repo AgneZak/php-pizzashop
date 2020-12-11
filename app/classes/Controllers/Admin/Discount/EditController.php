@@ -46,16 +46,13 @@ class EditController extends AuthController
 
             App::$db->updateRow('discounts', $row_id, $clean_inputs);
 
-            $p = 'You edited the item';
-
             header("Location: /admin/discounts");
             exit();
         }
 
         $content = new View([
             'title' => 'Edit Discount',
-            'form' => $this->form->render(),
-            'message' => $p ?? null
+            'form' => $this->form->render()
         ]);
 
         $this->page->setContent($content->render(ROOT . '/app/templates/content/forms.tpl.php'));

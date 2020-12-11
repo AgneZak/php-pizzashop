@@ -75,14 +75,15 @@ class HomeController extends Controller
 
         $rows = App::$db->getRowsWhere('pizzas');
         $discounts = App::$db->getRowsWhere('discounts');
-        $url = App::$router::getUrl('edit');
+        $edit_pizza_url = App::$router::getUrl('edit');
 
         foreach ($rows as $id => &$row) {
+
             foreach ($discounts as $discount_id => $discount) {
                 if ($id == $discount['pizza_id']) {
                     $row['discount'] = true;
 
-                    $row['price_diff'] = $row['price'];
+                    $row['price_diff'] = number_format($row['price'], 2);
                     $row['price'] = $discount['price'];
                 }
             }
@@ -90,7 +91,7 @@ class HomeController extends Controller
             if (App::$session->getUser()) {
                 if (App::$session->getUser()['role'] === 'admin') {
                     $this->link = new Link([
-                        'link' => "{$url}?id={$id}",
+                        'link' => "{$edit_pizza_url}?id={$id}",
                         'class' => 'link',
                         'text' => 'Edit'
                     ]);
@@ -106,6 +107,9 @@ class HomeController extends Controller
                     $row['order'] = $orderForm->render();
                 }
             }
+
+            $price = number_format($row['price'], 2);
+            $row['price'] = "{$price} $";
         }
 
         $content = new View([

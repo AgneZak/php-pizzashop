@@ -17,7 +17,7 @@
             <?php endif; ?>
 
             <img class="product-img" src="<?php print $product['img']; ?>" alt="">
-            <p><?php print $product['price']; ?> $</p>
+            <p><?php print $product['price']; ?></p>
             <?php print ($product['order'] ?? false) ? $product['order'] : ''; ?>
             <?php print ($product['link'] ?? false) ? $product['link'] : ''; ?>
             <?php print ($product['delete'] ?? false) ? $product['delete'] : ''; ?>
