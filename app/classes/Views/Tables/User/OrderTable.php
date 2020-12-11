@@ -18,7 +18,18 @@ class OrderTable extends Table
             $days = floor($difference / (3600*24));
             $hours = floor($difference / 3600);
             $minutes = floor(($difference - ($hours*3600)) / 60);
-            $result = "{$days}d {$hours}:{$minutes} H";
+            $seconds = floor($difference % 60);
+
+            if ($days){
+                $hours = $hours - 24;
+                $result = "{$days}d {$hours}:{$minutes} H";
+            } elseif ($minutes) {
+                $result = "{$minutes} min";
+            } elseif ($hours) {
+                $result = "{$hours}:{$minutes} H";
+            } else {
+                $result ="{$seconds} seconds";
+            }
 
             $row['timestamp'] = $result;
 
