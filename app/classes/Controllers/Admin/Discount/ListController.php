@@ -39,7 +39,7 @@ class ListController extends AuthController
         $home_content = new HomeContent();
 
         $content = new View([
-            'title' => 'Edit item',
+            'title' => 'Discounts',
             'table' => $table->render(),
             'button' => $home_content->addDiscount()
         ]);
