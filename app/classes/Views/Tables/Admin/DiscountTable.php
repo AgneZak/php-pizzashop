@@ -14,7 +14,7 @@ class DiscountTable extends Table
     public function __construct()
     {
         $rows = App::$db->getRowsWhere('discounts');
-        $url = App::$router::getUrl('admin_discounts_edit');
+        $edit_discount_url = App::$router::getUrl('admin_discounts_edit');
 
         $pizzas = App::$db->getRowsWhere('pizzas');
         foreach ($pizzas as $pizza_id => $pizza) {
@@ -26,7 +26,7 @@ class DiscountTable extends Table
             $rows[$id]['name'] = $names[$rows[$id]['pizza_id']];
             $rows[$id]['discount_price'] = $rows[$id]['price'];
             $link = new Link([
-                'link' => "{$url}?id={$id}",
+                'link' => "{$edit_discount_url}?id={$id}",
                 'class' => 'link',
                 'text' => 'Edit'
             ]);
