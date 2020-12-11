@@ -67,3 +67,22 @@ function validate_row_exists(string $field_input, array &$field): bool
 
     return false;
 }
+
+function validate_not_higher(array $filtered_input, array &$form): bool
+{
+    $pizzas = App::$db->getRowsWhere('pizzas');
+    foreach ($pizzas as $pizza_id => $pizza) {
+        if ($filtered_input['pizza_id'] == $pizza_id) {
+            $filtered_input['pizza_id'] = $pizza['name'];
+        }
+    }
+    $selected_pizza = App::$db->getRowWhere('pizzas', ['name' => $filtered_input['pizza_id']]);
+
+    if ($selected_pizza['price'] <= $filtered_input['price']) {
+        $form['error'] = 'You chose a higher/same price - it is not a discount';
+
+        return false;
+    }
+
+    return true;
+}

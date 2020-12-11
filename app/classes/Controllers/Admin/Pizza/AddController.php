@@ -19,10 +19,6 @@ class AddController extends AuthController
     {
         parent::__construct();
         $this->form = new AddForm();
-        $this->form_content = new FormContent([
-            'title' => 'Add',
-            'form' => $this->form->render()
-        ]);
         $this->page = new BasePage([
             'title' => 'Add Items',
         ]);
@@ -37,6 +33,12 @@ class AddController extends AuthController
 
             $msg = 'You added an item';
         }
+
+        $this->form_content = new FormContent([
+            'title' => 'Add',
+            'form' => $this->form->render(),
+            'message' => $msg ?? null
+        ]);
 
         $this->page->setContent($this->form_content->render());
 

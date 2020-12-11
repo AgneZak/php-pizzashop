@@ -53,6 +53,9 @@ class DiscountForm extends Form
                         ]
                     ]
                 ]
+            ],
+            'validators' => [
+                'validate_not_higher'
             ]
         ]);
     }

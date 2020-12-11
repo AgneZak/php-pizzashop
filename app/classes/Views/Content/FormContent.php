@@ -11,7 +11,7 @@ class FormContent extends View
     public function __construct($data)
     {
         parent::__construct($data + [
-                'message' => $msg ?? null
+                'message' => null
             ]);
     }
 

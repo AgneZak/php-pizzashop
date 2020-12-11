@@ -7,13 +7,14 @@ namespace App\Controllers\Admin\Discount;
 use App\App;
 use App\Controllers\Base\AuthController;
 use App\Views\BasePage;
+use App\Views\Content\FormContent;
 use App\Views\Forms\Admin\DiscountForm;
-use Core\View;
 
 class EditController extends AuthController
 {
     protected DiscountForm $form;
     protected BasePage $page;
+    protected FormContent $form_content;
 
     public function __construct()
     {
@@ -50,12 +51,12 @@ class EditController extends AuthController
             exit();
         }
 
-        $content = new View([
+        $this->form_content = new FormContent([
             'title' => 'Edit Discount',
             'form' => $this->form->render()
         ]);
 
-        $this->page->setContent($content->render(ROOT . '/app/templates/content/forms.tpl.php'));
+        $this->page->setContent($this->form_content->render());
 
         return $this->page->render();
     }

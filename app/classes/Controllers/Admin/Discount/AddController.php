@@ -23,12 +23,8 @@ class AddController extends AuthController
         foreach ($pizzas as $pizza_id => $pizza){
             $pizza_options[$pizza_id] = $pizza['name'];
         }
-
         $this->form = new DiscountForm($pizza_options);
-        $this->form_content = new FormContent([
-            'title' => 'Add',
-            'form' => $this->form->render()
-        ]);
+
         $this->page = new BasePage([
             'title' => 'Add Discount',
         ]);
@@ -43,6 +39,12 @@ class AddController extends AuthController
 
             $msg = 'You added a discount';
         }
+
+        $this->form_content = new FormContent([
+            'title' => 'Add',
+            'form' => $this->form->render(),
+            'message' => $msg ?? null
+        ]);
 
         $this->page->setContent($this->form_content->render());
 

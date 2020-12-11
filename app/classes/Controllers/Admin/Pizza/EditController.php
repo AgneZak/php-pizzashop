@@ -7,6 +7,7 @@ namespace App\Controllers\Admin\Pizza;
 use App\App;
 use App\Controllers\Base\AuthController;
 use App\Views\BasePage;
+use App\Views\Content\FormContent;
 use App\Views\Forms\Admin\AddForm;
 use Core\View;
 
@@ -14,6 +15,7 @@ class EditController extends AuthController
 {
     protected AddForm $form;
     protected BasePage $page;
+    protected FormContent $form_content;
 
     public function __construct()
     {
@@ -44,12 +46,12 @@ class EditController extends AuthController
             exit();
         }
 
-        $content = new View([
-            'title' => 'Edit item',
+        $this->form_content = new FormContent([
+            'title' => 'Edit Item',
             'form' => $this->form->render()
         ]);
 
-        $this->page->setContent($content->render(ROOT . '/app/templates/content/forms.tpl.php'));
+        $this->page->setContent($this->form_content->render());
 
         return $this->page->render();
     }
