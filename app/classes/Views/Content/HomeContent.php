@@ -80,6 +80,7 @@ class HomeContent
             }
         }
     }
+
     public function addDiscount()
     {
         if (!App::$session->getUser()) {
@@ -96,5 +97,7 @@ class HomeContent
             }
         }
     }
+
+
 
 }

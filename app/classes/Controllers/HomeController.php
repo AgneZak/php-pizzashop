@@ -74,11 +74,20 @@ class HomeController extends Controller
         $home_content->content();
 
         $rows = App::$db->getRowsWhere('pizzas');
-
+        $discounts = App::$db->getRowsWhere('discounts');
         $url = App::$router::getUrl('edit');
 
-
         foreach ($rows as $id => &$row) {
+            foreach ($discounts as $discount_id => $discount) {
+                if ($id == $discount['pizza_id']) {
+                    $row['discount'] = true;
+                }
+                if (isset($row['discount'])) {
+                    $row['price_diff'] = $row['price'];
+                    $row['price'] = $discount['price'];
+                }
+            }
+
             if (App::$session->getUser()) {
                 if (App::$session->getUser()['role'] === 'admin') {
                     $this->link = new Link([
@@ -106,7 +115,6 @@ class HomeController extends Controller
                 $row['delete'] = '';
             }
         }
-
 
         $content = new View([
             'title' => 'Welcome to Pz-DERIA',

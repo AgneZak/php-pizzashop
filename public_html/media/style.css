@@ -1,24 +1,29 @@
-*{
+* {
     font-family: Helvetica, sans-serif;
     box-sizing: border-box;
 }
-body{
+
+body {
     margin: 0 auto;
 }
-main{
+
+main {
     background-color: #C868A6;
 }
-.wrapper{
+
+.wrapper {
     text-align: center;
     width: 1100px;
     margin: 0 auto;
     min-height: 100vH;
     padding: 100px 0;
 }
-.header--main{
+
+.header--main {
     font-size: xx-large;
 }
-.header{
+
+.header {
     color: aliceblue;
 }
 
@@ -31,8 +36,9 @@ th,
 table {
     border: 1px dashed grey;
 }
+
 td,
-th{
+th {
     padding: 10px;
 }
 
@@ -40,11 +46,12 @@ th{
 /* ----------------------
              form
 -------------------------*/
-form{
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 /*label{*/
 /*    display: flex;*/
 /*    flex-direction: column;*/
@@ -53,17 +60,19 @@ form{
 /*}*/
 input,
 textarea,
-select{
+select {
     width: 400px;
     margin-bottom: 5px;
     padding: 10px;
     border-radius: 10px;
     outline: none;
 }
-textarea{
+
+textarea {
     resize: none;
 }
-button{
+
+button {
     font-weight: bold;
     cursor: pointer;
     border: 3px solid #BA68C8;
@@ -73,11 +82,12 @@ button{
     margin: 5px;
     background-color: aliceblue;
 }
+
 /* ----------------------
              nav
 -------------------------*/
 
-nav{
+nav {
     position: sticky;
     top: 0;
     width: 100%;
@@ -85,6 +95,7 @@ nav{
     z-index: 2;
 
 }
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -104,9 +115,11 @@ li a {
     padding: 14px 16px;
     text-decoration: none;
 }
+
 li a:hover:not(.active) {
     background-color: #C868A6;
 }
+
 /* ----------------------
              Products
 -------------------------*/
@@ -119,14 +132,20 @@ li a:hover:not(.active) {
     border-radius: 25px;
 
 }
+
 .grid-item {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
     font-size: 15px;
     text-align: center;
     border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
-.product-img{
+
+.product-img {
     width: 200px;
     height: 300px;
     object-position: center;
@@ -136,7 +155,7 @@ li a:hover:not(.active) {
 /* ----------------------
              Links
 -------------------------*/
-.link{
+.link {
     display: inline-block;
     margin: 5px;
     text-decoration: none;
@@ -147,4 +166,19 @@ li a:hover:not(.active) {
     border-radius: 5px;
     background-color: aliceblue;
     min-width: 100px;
+}
+/* ----------------------
+             Discount
+-------------------------*/
+.discount {
+    border: 2px solid red;
+}
+
+.old-price {
+    background-color: rgba(255, 0, 0, 0.8);
+    padding: 5px;
+    margin-inline-start: auto;
+    width: 100px;
+    color: aliceblue;
+    text-decoration: line-through solid aliceblue;
 }

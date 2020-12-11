@@ -29,7 +29,7 @@ class DiscountForm extends Form
                 ],
                 'price' => [
                     'label' => 'Price',
-                    'type' => 'number',
+                    'type' => 'text',
                     'value' => '',
                     'validators' => [
                         'validate_field_not_empty',

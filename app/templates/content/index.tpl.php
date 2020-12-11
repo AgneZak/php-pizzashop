@@ -7,8 +7,13 @@
 
     <?php foreach ($data['products'] as $product) : ?>
 
-        <div class="grid-item">
+        <div class="grid-item <?php print ($product['discount'] ?? false) ? 'discount' : ''; ?>">
             <h4><?php print $product['name']; ?></h4>
+
+            <?php if(isset($product['discount'])): ?>
+                <p class="old-price"><?php print $product['price_diff']; ?></p>
+            <?php endif; ?>
+
             <img class="product-img" src="<?php print $product['img']; ?>" alt="">
             <p><?php print $product['price']; ?> $</p>
             <?php print $product['order']; ?>
