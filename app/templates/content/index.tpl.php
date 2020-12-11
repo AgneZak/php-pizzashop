@@ -11,7 +11,9 @@
             <h4><?php print $product['name']; ?></h4>
 
             <?php if(isset($product['discount'])): ?>
+
                 <p class="old-price"><?php print $product['price_diff']; ?></p>
+
             <?php endif; ?>
 
             <img class="product-img" src="<?php print $product['img']; ?>" alt="">
