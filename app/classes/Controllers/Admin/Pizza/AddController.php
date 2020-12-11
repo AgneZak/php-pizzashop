@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\Admin\Pizza;
 
 use App\App;
 use App\Controllers\Base\AuthController;

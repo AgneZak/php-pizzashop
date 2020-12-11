@@ -21,9 +21,9 @@ class EditController extends AuthController
 
         $pizzas = App::$db->getRowsWhere('pizzas');
         foreach ($pizzas as $pizza_id => $pizza) {
-            $id_array[$pizza_id] = $pizza['name'];
+            $pizza_options[$pizza_id] = $pizza['name'];
         }
-        $this->form = new DiscountForm($id_array);
+        $this->form = new DiscountForm($pizza_options);
 
         $this->page = new BasePage([
             'title' => 'Edit Discount',
