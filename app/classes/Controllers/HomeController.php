@@ -81,8 +81,7 @@ class HomeController extends Controller
             foreach ($discounts as $discount_id => $discount) {
                 if ($id == $discount['pizza_id']) {
                     $row['discount'] = true;
-                }
-                if (isset($row['discount'])) {
+
                     $row['price_diff'] = $row['price'];
                     $row['price'] = $discount['price'];
                 }
@@ -100,27 +99,22 @@ class HomeController extends Controller
 
                     $deleteForm = new DeleteForm($id);
                     $row['delete'] = $deleteForm->render();
-                    $row['order'] = '';
 
                 } elseif (App::$session->getUser()['role'] === 'user') {
 
                     $orderForm = new OrderForm($row['name']);
                     $row['order'] = $orderForm->render();
-                    $row['link'] = '';
-                    $row['delete'] = '';
                 }
-            } else {
-                $row['order'] = '';
-                $row['link'] = '';
-                $row['delete'] = '';
             }
         }
 
         $content = new View([
             'title' => 'Welcome to Pz-DERIA',
             'heading' => $h3,
-            'redirect' => $home_content->redirectLink(),
-            'discount' => $home_content->addDiscount(),
+            'buttons' => [
+                'add_discount' => $home_content->addDiscount(),
+                'login_or_create' => $home_content->redirectLink(),
+            ],
             'products' => $rows
         ]);
 
