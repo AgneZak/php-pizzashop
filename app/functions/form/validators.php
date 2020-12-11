@@ -68,6 +68,13 @@ function validate_row_exists(string $field_input, array &$field): bool
     return false;
 }
 
+/**
+ * Checks if written discount is not higher, when original price in the database
+ *
+ * @param array $filtered_input
+ * @param array $form
+ * @return bool
+ */
 function validate_not_higher(array $filtered_input, array &$form): bool
 {
     $pizzas = App::$db->getRowsWhere('pizzas');
