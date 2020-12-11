@@ -20,7 +20,7 @@ class EditController extends AuthController
         parent::__construct();
 
         $pizzas = App::$db->getRowsWhere('pizzas');
-        foreach ($pizzas as $pizza_id => $pizza){
+        foreach ($pizzas as $pizza_id => $pizza) {
             $id_array[$pizza_id] = $pizza['name'];
         }
         $this->form = new DiscountForm($id_array);
@@ -47,6 +47,9 @@ class EditController extends AuthController
             App::$db->updateRow('discounts', $row_id, $clean_inputs);
 
             $p = 'You edited the item';
+
+            header("Location: /admin/discounts");
+            exit();
         }
 
         $content = new View([

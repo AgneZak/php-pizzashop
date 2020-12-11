@@ -41,6 +41,9 @@ class EditController extends AuthController
             App::$db->updateRow('pizzas', $row_id, $clean_inputs);
 
             $p = 'You edited the item';
+
+            header("Location: /index");
+            exit();
         }
 
         $content = new View([
