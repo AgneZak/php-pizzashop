@@ -92,7 +92,7 @@ function option_attr($option_id, $field)
         'value' => $option_id,
     ];
 
-    if (($field['value'] ?? false) === $option_id) {
+    if (($field['value'] ?? false) == $option_id) {
         $attributes['selected'] = 'true';
     }
 

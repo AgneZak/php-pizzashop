@@ -18,12 +18,13 @@ class EditController extends AuthController
     public function __construct()
     {
         parent::__construct();
-        $id_array = [];
+
         $pizzas = App::$db->getRowsWhere('pizzas');
         foreach ($pizzas as $pizza_id => $pizza){
             $id_array[$pizza_id] = $pizza['name'];
         }
         $this->form = new DiscountForm($id_array);
+
         $this->page = new BasePage([
             'title' => 'Edit Discount',
         ]);

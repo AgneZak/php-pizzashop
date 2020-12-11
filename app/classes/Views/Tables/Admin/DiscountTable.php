@@ -20,10 +20,12 @@ class DiscountTable extends Table
         foreach ($pizzas as $pizza_id => $pizza) {
             $names[$pizza_id] = $pizza['name'];
         }
-
+        $discount_id = 0;
         foreach ($rows as $id => $row) {
-            $rows[$id]['name'] = $names[$id];
+            $rows[$id]['id'] = ++$discount_id;
 
+            $rows[$id]['name'] = $names[$rows[$id]['pizza_id']];
+            $rows[$id]['discount_price'] = $rows[$id]['price'];
             $link = new Link([
                 'link' => "{$url}?id={$id}",
                 'class' => 'link',
@@ -33,13 +35,16 @@ class DiscountTable extends Table
 
             $deleteForm = new DeleteForm($id);
             $rows[$id]['delete'] = $deleteForm->render();
+
+            unset($rows[$id]['pizza_id']);
+            unset($rows[$id]['price']);
         }
 
         parent::__construct([
             'headers' => [
                 'ID',
-                'Price',
                 'Pizza name',
+                'Price',
                 'Edit',
                 'Delete'
             ],

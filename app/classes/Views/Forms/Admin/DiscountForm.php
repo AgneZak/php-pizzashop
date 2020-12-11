@@ -16,17 +16,14 @@ class DiscountForm extends Form
             ],
             'fields' => [
                 'pizza_id' => [
-                    'label' => 'Product name',
                     'type' => 'select',
                     'options' => $pizza_id,
-                    'value' => '',
                     'validators' => [
                         'validate_select'
                     ],
                     'extra' => [
                         'attr' => [
-                            'placeholder' => 'Pizza name',
-                            'class' => 'input-field'
+                            'placeholder' => 'Pizza name'
                         ]
                     ]
                 ],

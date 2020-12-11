@@ -23,6 +23,7 @@ class AddController extends AuthController
         foreach ($pizzas as $pizza_id => $pizza){
             $id_array[$pizza_id] = $pizza['name'];
         }
+
         $this->form = new DiscountForm($id_array);
         $this->page = new BasePage([
             'title' => 'Add Discount',
