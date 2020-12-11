@@ -29,6 +29,7 @@ class InstallController
 
         App::$db->createTable('pizzas');
         App::$db->createTable('orders');
+        App::$db->createTable('discounts');
 
     }
 

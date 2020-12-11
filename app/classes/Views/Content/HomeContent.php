@@ -80,6 +80,21 @@ class HomeContent
             }
         }
     }
+    public function addDiscount()
+    {
+        if (!App::$session->getUser()) {
+            return '';
+        } elseif (App::$session->getUser()) {
+            if (App::$session->getUser()['role'] === 'admin') {
+                $this->link = new Link([
+                    'link' => "/admin/discounts/add",
+                    'class' => 'link',
+                    'text' => 'Add Discount'
+                ]);
 
+                return $this->link->render();
+            }
+        }
+    }
 
 }

@@ -112,6 +112,7 @@ class HomeController extends Controller
             'title' => 'Welcome to Pz-DERIA',
             'heading' => $h3,
             'redirect' => $home_content->redirectLink(),
+            'discount' => $home_content->addDiscount(),
             'products' => $rows
         ]);
 
