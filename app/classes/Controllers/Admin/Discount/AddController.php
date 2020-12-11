@@ -7,13 +7,14 @@ namespace App\Controllers\Admin\Discount;
 use App\App;
 use App\Controllers\Base\AuthController;
 use App\Views\BasePage;
+use App\Views\Content\FormContent;
 use App\Views\Forms\Admin\DiscountForm;
-use Core\View;
 
 class AddController extends AuthController
 {
     protected DiscountForm $form;
     protected BasePage $page;
+    protected FormContent $form_content;
 
     public function __construct()
     {
@@ -24,6 +25,10 @@ class AddController extends AuthController
         }
 
         $this->form = new DiscountForm($pizza_options);
+        $this->form_content = new FormContent([
+            'title' => 'Add',
+            'form' => $this->form->render()
+        ]);
         $this->page = new BasePage([
             'title' => 'Add Discount',
         ]);
@@ -39,13 +44,7 @@ class AddController extends AuthController
             $msg = 'You added a discount';
         }
 
-        $content = new View([
-            'title' => 'Add',
-            'form' => $this->form->render(),
-            'message' => $msg ?? null
-        ]);
-
-        $this->page->setContent($content->render(ROOT . '/app/templates/content/forms.tpl.php'));
+        $this->page->setContent($this->form_content->render());
 
         return $this->page->render();
     }

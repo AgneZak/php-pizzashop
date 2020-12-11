@@ -6,6 +6,7 @@ namespace App\Controllers;
 use App\App;
 use App\Controllers\Base\GuestController;
 use App\Views\BasePage;
+use App\Views\Content\FormContent;
 use App\Views\Forms\RegisterForm;
 use Core\View;
 
@@ -13,11 +14,16 @@ class RegisterController extends GuestController
 {
     protected RegisterForm $form;
     protected BasePage $page;
+    protected FormContent $form_content;
 
     public function __construct()
     {
         parent::__construct();
         $this->form = new RegisterForm();
+        $this->form_content = new FormContent([
+            'title' => 'Register',
+            'form' => $this->form->render()
+        ]);
         $this->page = new BasePage([
             'title' => 'Register',
         ]);
@@ -35,12 +41,7 @@ class RegisterController extends GuestController
             header("Location: /login");
         }
 
-        $content = new View([
-            'title' => 'Register',
-            'form' => $this->form->render()
-        ]);
-
-        $this->page->setContent($content->render(ROOT . '/app/templates/content/forms.tpl.php'));
+        $this->page->setContent($this->form_content->render());
 
         return $this->page->render();
     }

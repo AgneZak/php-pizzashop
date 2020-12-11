@@ -46,7 +46,6 @@ class ListController extends AuthController
 
         $this->page->setContent($content->render(ROOT . '/app/templates/content/discountlist.tpl.php'));
 
-
         return $this->page->render();
     }
 
